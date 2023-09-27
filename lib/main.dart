@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 
 void main() => runApp(const SearchApp());
 
@@ -118,7 +120,13 @@ class _SearchScreenState extends State<SearchScreen> {
                       )
                     : Padding(
                         padding: const EdgeInsets.fromLTRB(15, 5, 15, 0),
-                        child: Text(output),
+                        child: Linkify(
+                          onOpen: (link) async {
+                            final url = link.url;
+                            await launch(url); // Directly launch the URL
+                          },
+                          text: output,
+                        ),
                       ),
               ),
             ],
