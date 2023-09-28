@@ -82,11 +82,21 @@ class _SearchScreenState extends State<SearchScreen> {
     }
   }
 
+  void mixAndSearch() {
+    final enteredName = searchController.text;
+    final mixedName = enteredName.replaceAll(' ', ''); // Remove spaces
+    searchController.text = mixedName; // Update the text field
+    search(); // Trigger the search function with the mixed name
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.black,
         appBar: AppBar(
-          title: const Text('Search App'),
+          backgroundColor: Colors.black,
+          title:
+              const Text(style: TextStyle(color: Colors.white), 'Search App'),
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -97,35 +107,73 @@ class _SearchScreenState extends State<SearchScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
-                      width: 320,
+                      height: 40,
+                      width: 330,
                       child: TextField(
                         controller: searchController,
-                        decoration:
-                            const InputDecoration(labelText: 'Search by Name'),
+                        cursorColor: Colors.blue,
+                        decoration: InputDecoration(
+                          labelStyle: const TextStyle(
+                              fontSize: 20, color: Colors.white),
+                          border: const OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blue)),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.white),
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.white),
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(
+                              vertical: 5.0,
+                              horizontal:
+                                  20.0), // Adjust the values for vertical and horizontal padding
+                        ),
+                        style:
+                            const TextStyle(fontSize: 20, color: Colors.white),
                       ),
                     ),
                     ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: const CircleBorder(),
+                        backgroundColor: const Color(0xFF2997ff),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 6.0, horizontal: 10.0),
+                      ),
                       onPressed: () {
-                        search();
+                        FocusScope.of(context).unfocus();
+                        // search();
+                        mixAndSearch();
                       },
-                      child: const Icon(Icons.search),
+                      child: const Icon(
+                          size: 35, color: Colors.white, Icons.search),
                     ),
                   ],
                 ),
               ),
               Container(
                 child: isLoading
-                    ? const Center(
-                        child: CircularProgressIndicator(),
+                    ? const SizedBox(
+                        height: 600,
+                        child: Center(
+                          child: CircularProgressIndicator(color: Colors.blue),
+                        ),
                       )
                     : Padding(
-                        padding: const EdgeInsets.fromLTRB(15, 5, 15, 0),
+                        padding: const EdgeInsets.fromLTRB(15, 5, 15, 10),
                         child: Linkify(
+                          style: const TextStyle(
+                              fontSize: 20, color: Colors.white),
                           onOpen: (link) async {
                             final url = link.url;
                             await launch(url); // Directly launch the URL
                           },
                           text: output,
+                          linkStyle: const TextStyle(
+                            color:
+                                Color(0xFF2997ff), // Set link color to #0071e3
+                          ),
                         ),
                       ),
               ),
