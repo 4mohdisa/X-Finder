@@ -38,10 +38,22 @@ dependencies:
   http: ^0.13.6
   flutter_linkify: ^6.0.0
   url_launcher: ^6.1.11
+  flutter_svg: ^2.0.7
+  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  flutter_launcher_icons: "^0.13.1"
+  
+flutter_launcher_icons:
+  image_path: "assets/app_icon.png"
+  adaptive_icon_background: "#000"
+  adaptive_icon_foreground: "assets/logo_foreground.png"
+  android: true
+  ios: true
+  min_sdk_android: 21 # android min sdk min:16, default 21
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -67,7 +79,8 @@ flutter:
   #   - images/a_dot_ham.jpeg
 
   assets:
-  - images/background.webp
+  - assets/x_logo.svg
+  - assets/app_bar.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -4,6 +4,7 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<string>X Finder</string>
 	<key>CFBundleDisplayName</key>
 	<string>Sherlock</string>
 	<key>CFBundleExecutable</key>
