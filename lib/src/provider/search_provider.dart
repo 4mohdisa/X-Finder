@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
@@ -22,7 +20,6 @@ class SearchProvider with ChangeNotifier {
   Future<void> searchResponse(String query) async {
     _isLoading = true;
     log('DATALOGGING: 0');
-    const apiUrl = '$kBaseUrl/cli/';
     final Map<String, String> headers = {
       "Content-Type": "application/json",
     };
@@ -32,7 +29,7 @@ class SearchProvider with ChangeNotifier {
     };
 
     final response = await http.post(
-      Uri.parse(apiUrl),
+      Uri.parse('$kBaseUrl/cli/'),
       headers: headers,
       body: json.encode(requestBody),
     );
@@ -44,7 +41,6 @@ class SearchProvider with ChangeNotifier {
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
-
       // Get the output from the API response.
       final output = data['output'];
       _response = output;

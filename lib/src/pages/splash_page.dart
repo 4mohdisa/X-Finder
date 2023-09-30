@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:sherlock/src/pages/search_page.dart';
+import '/src/pages/search_page.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
