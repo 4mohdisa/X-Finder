@@ -1,19 +1,21 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:http/http.dart' as http;
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 import '../core/util/constants.dart';
+import '../model/data_model.dart';
 
 class SearchProvider with ChangeNotifier {
-  String? _response;
+  List<DataModel>? _response;
 
   // Adding a variable to track if data is fetched.
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
 
-  String? get response {
+  List<DataModel>? get response {
     return _response;
   }
 
@@ -40,10 +42,10 @@ class SearchProvider with ChangeNotifier {
     log('DATALOGGING: ${response.body}');
 
     if (response.statusCode == 200) {
-      final data = json.decode(response.body);
-      // Get the output from the API response.
-      final output = data['output'];
-      _response = output;
+      final parsed = jsonDecode(response.body)['results'];
+      List<DataModel> noth = dataModelFromJson(parsed);
+
+      _response = noth;
     } else {
       log('API request failed with status code ${response.statusCode}');
     }
