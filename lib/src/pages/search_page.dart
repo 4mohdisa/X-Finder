@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '/src/provider/search_provider.dart';
 
@@ -116,20 +117,26 @@ class _SearchScreenState extends State<SearchScreen> {
                   itemCount: provider.response?.length ?? 0,
                   itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.all(4.0),
-                    child: ListTile(
-                      title: Text(
-                        '${provider.response![index].name}',
-                        style: const TextStyle(
-                          color: Colors.white,
+                    child: GestureDetector(
+                      onTap: () async {
+                        final url = provider.response![index].link!;
+                        await launch(url);
+                      },
+                      child: ListTile(
+                        title: Text(
+                          '${provider.response![index].name}',
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      subtitle: Text(
-                        '${provider.response![index].link}',
-                        style: const TextStyle(
-                          color: Colors.white,
+                        subtitle: Text(
+                          '${provider.response![index].link}',
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
                         ),
+                        tileColor: Colors.white10,
                       ),
-                      tileColor: Colors.white10,
                     ),
                   ),
                 );
