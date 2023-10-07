@@ -59,15 +59,14 @@ class _SearchScreenState extends State<SearchScreen> {
                     inputFormatters: [
                       FilteringTextInputFormatter.deny(RegExp(r'\s')),
                     ],
-                    cursorColor: const Color(0xFF2997ff),
+                    cursorColor: Colors.white,
                     decoration: InputDecoration(
                       hintText: 'elonmusk',
-                      hoverColor: const Color(0xFF2997ff),
+                      hoverColor: Colors.white,
                       labelStyle:
                           const TextStyle(fontSize: 20, color: Colors.white),
                       border: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(color: Color(0xFF2997ff)),
+                          borderSide: const BorderSide(color: Colors.white),
                           borderRadius: BorderRadius.circular(30.0)),
                       enabledBorder: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.white),
@@ -92,7 +91,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     shape: const CircleBorder(),
-                    backgroundColor: const Color(0xFF2997ff),
+                    backgroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(
                         vertical: 6.0, horizontal: 10.0),
                   ),
@@ -100,7 +99,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     filterFunction();
                   },
                   child:
-                      const Icon(size: 35, color: Colors.white, Icons.search),
+                      const Icon(size: 35, color: Colors.black, Icons.search),
                 ),
               ],
             ),
@@ -111,34 +110,48 @@ class _SearchScreenState extends State<SearchScreen> {
         builder: (context, provider, child) {
           return provider.isLoading
               ? const Center(
-                  child: CircularProgressIndicator(color: Colors.blue),
+                  child: CircularProgressIndicator(color: Colors.white),
                 )
               : ListView.builder(
                   itemCount: provider.response?.length ?? 0,
-                  itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: GestureDetector(
-                      onTap: () async {
-                        final url = provider.response![index].link!;
-                        await launch(url);
-                      },
-                      child: ListTile(
-                        title: Text(
-                          '${provider.response![index].name}',
-                          style: const TextStyle(
-                            color: Colors.white,
+                  itemBuilder: (context, index) {
+                    final name = provider.response![index].name;
+                    final link = provider.response![index].link;
+
+                    return Padding(
+                      padding: const EdgeInsets.fromLTRB(5, 5, 5, 1),
+                      child: GestureDetector(
+                        onTap: () async {
+                          final url = link!; // You can safely use link here
+                          await launch(url);
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              color: Colors.white24,
+                              width: 1,
+                            ),
+                          ),
+                          child: ListTile(
+                            title: Text(
+                              '$name',
+                              style: const TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                            subtitle: Text(
+                              '$link',
+                              style: const TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                            tileColor: Colors.white10,
                           ),
                         ),
-                        subtitle: Text(
-                          '${provider.response![index].link}',
-                          style: const TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                        tileColor: Colors.white10,
                       ),
-                    ),
-                  ),
+                    );
+                  },
                 );
         },
       ),
