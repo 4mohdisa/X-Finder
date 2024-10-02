@@ -1,6 +1,6 @@
 # X Finder
 
-![X Finder Mockup]([https://res.cloudinary.com/dqfubcyuh/image/upload/v1727889600/mediamodifier_image_wpjotg.jpg](https://res.cloudinary.com/dqfubcyuh/image/upload/c_fill,g_auto,h_250,w_970/b_rgb:000000,e_gradient_fade,y_-0.50/c_scale,co_rgb:ffffff,fl_relative,l_text:montserrat_25_style_light_align_center:Shop%20Now,w_0.5,y_0.18/v1727889600/mediamodifier_image_wpjotg.jpg))
+![X Finder Mockup]([[https://res.cloudinary.com/dqfubcyuh/image/upload/v1727889600/mediamodifier_image_wpjotg.jpg](https://res.cloudinary.com/dqfubcyuh/image/upload/c_fill,g_auto,h_250,w_970/b_rgb:000000,e_gradient_fade,y_-0.50/c_scale,co_rgb:ffffff,fl_relative,l_text:montserrat_25_style_light_align_center:Shop%20Now,w_0.5,y_0.18/v1727889600/mediamodifier_image_wpjotg.jpg)](https://res.cloudinary.com/dqfubcyuh/image/upload/v1727889600/mediamodifier_image_wpjotg.jpg))
 
 **Version:** 1.0.0+1  
 **Status:** Testing Phase  
